@@ -1,8 +1,11 @@
 import React from "react"
 import classNames from "classnames"
 
-import CurrencyPane from "./currency-pane"
-import direction from "./currency-pane-direction"
+import Pane from "./pane"
+import Input from "./input"
+import Nav from "./nav"
+import Header from "./header"
+import direction from "../lib/pane-kind"
 
 import styles from "../styles/app.css"
 
@@ -16,12 +19,25 @@ class App extends React.Component {
 
     return (
       <section id="exchange" className={classNames(classes)}>
-        <CurrencyPane
-          direction={direction.Top}
-        />
-        <CurrencyPane
-          direction={direction.Bottom}
-        />
+        <Header/>
+
+        <div>
+          <Pane
+            direction={direction.Top}
+          >
+            <Input/>
+            <Nav/>
+          </Pane>
+
+          <Pane
+            direction={direction.Bottom}
+          >
+            <Input/>
+            <Nav/>
+          </Pane>
+
+        </div>
+
       </section>
     )
   }

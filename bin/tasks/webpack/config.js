@@ -55,6 +55,7 @@ const webpackConfig = {
     new webpack.DefinePlugin({
       "__DEV__": env.isDev(config.env),
       "__PROD__": env.isProd(config.env),
+      "__SERVER__": `127.0.0.1:${config.serverLocal.port}`,
     }),
   ]
 }

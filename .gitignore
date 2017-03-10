@@ -3,6 +3,9 @@ node_modules
 static/*
 !static/.keep
 
+!src/lib
+!bin/lib
+
 yarn.lock
 
 *.swp

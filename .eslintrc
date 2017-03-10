@@ -19,6 +19,7 @@ env:
 globals:
   __DEV__: false
   __PROD__: false
+  __SERVER__: false
 
 rules:
   indent: [2, 2] # 2 spaces indentation

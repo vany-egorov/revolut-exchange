@@ -3,7 +3,7 @@ Meta:
 * Open the current Revolut app, on either iOS or Android, and navigate to the exchange screen.
 
 * Implement the functionality of this screen in your own custom web widget using the FX rates from either source:
-  *  http://www.ecb.int/stats/exchange/eurofxref/html/index.en.html#dev or
+  * http://www.ecb.int/stats/exchange/eurofxref/html/index.en.html#dev or
   * https://openexchangerates.org/
  
 Explicit Requirements:

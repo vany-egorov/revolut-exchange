@@ -5,7 +5,7 @@ import Pane from "./pane"
 import Input from "./input"
 import Nav from "./nav"
 import Header from "./header"
-import direction from "../lib/pane-kind"
+import direction from "../lib/exchange-direction"
 
 import styles from "../styles/app.css"
 
@@ -23,16 +23,16 @@ class App extends React.Component {
 
         <div>
           <Pane
-            direction={direction.Top}
+            direction={direction.I}
           >
-            <Input/>
+            <Input direction={direction.I}/>
             <Nav/>
           </Pane>
 
           <Pane
-            direction={direction.Bottom}
+            direction={direction.O}
           >
-            <Input/>
+            <Input direction={direction.O}/>
             <Nav/>
           </Pane>
 

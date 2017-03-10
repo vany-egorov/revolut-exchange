@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 
-import App from "./components/app"
+import App from "./containers/app"
 import {configureStore, ioConnect} from "./store"
 import preloadedState from "./preloaded-state"
 

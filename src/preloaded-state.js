@@ -25,10 +25,12 @@ const preloadedState = {
   },
   ui: {
     i: {
-      currency: "USD"
+      currency: "USD",
+      v: 0
     },
     o: {
-      currency: "EUR"
+      currency: "EUR",
+      v: 0
     }
   }
 }

@@ -51,8 +51,6 @@ const io = socketIO(server);
 
 
 io.on("connection", function(socket) {
-  console.log("[+]")
-
   const ticker = Bacon.fromPoll(3000, () => {
     return new Bacon.Next();
   })

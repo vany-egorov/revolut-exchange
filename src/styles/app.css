@@ -1,0 +1,11 @@
+@import "_const.css";
+
+.container {
+  margin: 0 auto;
+  background: #CCCCCC;
+
+  &--16x9 {
+    width: $sz-w;
+    height: $sz-h;
+  }
+}

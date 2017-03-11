@@ -21,7 +21,7 @@ const currencyRe = /^(:?0|(:?[1-9][0-9]*))(:?\.[0-9]{0,2})?$/
 
 // o => old
 // n => new
-function currency(o, n, maxLen=7) {
+export function currency(o, n, maxLen=7) {
   o = o.toString()
   n = n.toString()
 
@@ -36,10 +36,4 @@ function currency(o, n, maxLen=7) {
   return n
 }
 
-function round(v) { return Math.round(100 * v) / 100 }
-
-
-export {
-  currency,
-  round
-}
+export function round(v) { return Math.round(100 * v) / 100 }

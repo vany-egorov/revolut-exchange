@@ -44,3 +44,10 @@
 .currency {
   font-size: 35px;
 }
+
+.rate-invert {
+  position: absolute;
+  right: 30px;
+  top: 40px;
+  font-size: 12px;
+}

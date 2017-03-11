@@ -3,6 +3,7 @@ import classNames from "classnames"
 
 import Header from "./header"
 import ExchangeRate from "./exchange-rate"
+import ExchangeRateInvert from "./exchange-rate-invert"
 import ExchangeButton from "./exchange-button"
 import Pane from "./pane"
 import Currency from "./currency"
@@ -56,6 +57,7 @@ class App extends React.Component {
           </div>
           <div className={stylesPane.r}>
             <Input store={this.props.store} direction={direction.O}/>
+            <ExchangeRateInvert store={this.props.store}/>
           </div>
           <div className={stylesPane.clear}/>
 

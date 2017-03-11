@@ -3,6 +3,8 @@ import React from "react"
 
 import * as actions from "../actions"
 
+import styles from "../styles/account.css"
+
 
 class Account extends React.Component {
   constructor(props) {
@@ -52,7 +54,7 @@ class Account extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className={styles.account}>
         You have {this.state.v} {this.state.currency}
       </div>
     )

@@ -3,18 +3,39 @@
 .pane {
   height: 50%;
   position: relative;
-  color: white;
+  color: $c-font;
+  box-sizing: border-box;
 }
 
-.i { background: linear-gradient(#0959DD, #2879FF); }
-.o { background: linear-gradient(#255FCF, #0E439D); }
+.i {
+  background: linear-gradient(#0959DD, #2879FF);
+
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: calc(50% - 20px);
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #2879FF;
+  }
+}
+.o {
+  background: linear-gradient(#255FCF, #0E439D);
+  padding-top: 40px;
+}
 
 .l {
   float: left;
+  padding-left: $sz-padding;
   width: 50%;
 }
 .r {
   float: right;
+  position: relative;
   width: 50%;
 }
 .clear { clear: both; }

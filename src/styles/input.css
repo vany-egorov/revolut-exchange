@@ -1,0 +1,16 @@
+@import "_const.css";
+
+.input {
+  position: absolute;
+  top: 10px;
+  display: block;
+  text-align: right;
+  border: none;
+  color: $c-font;
+  background: none;
+  outline: none;
+  font-size: 24px;
+  overflow: hidden;
+  padding: 0px;
+  right: $sz-padding;
+}

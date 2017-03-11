@@ -6,6 +6,8 @@ import {store, ioConnect} from "./store"
 import State from "./state"
 import preloadedState from "./preloaded-state"
 
+import "./styles/index.css"
+
 
 const renderApp = (root, store) => {
   ReactDOM.render(<App store={store}/>, root)

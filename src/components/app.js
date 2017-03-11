@@ -51,8 +51,8 @@ class App extends React.Component {
           direction={direction.O}
         >
           <div className={stylesPane.l}>
-            <Account store={this.props.store} direction={direction.O}/>
             <Currency store={this.props.store} direction={direction.O}/>
+            <Account store={this.props.store} direction={direction.O}/>
           </div>
           <div className={stylesPane.r}>
             <Input store={this.props.store} direction={direction.O}/>

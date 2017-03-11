@@ -3,6 +3,8 @@ import React from "react"
 
 import * as actions from "../actions"
 
+import styles from "../styles/input.css"
+
 
 class Input extends React.Component {
   constructor(props) {
@@ -50,18 +52,28 @@ class Input extends React.Component {
     e.preventDefault()
   }
 
+  onFC(e) {
+    const len = e.target.value.length
+    e.target.setSelectionRange(len,len)
+  }
+
   onFocus(e) {
+    this.onFC(e)
     e.preventDefault()
   }
 
   onClick(e) {
+    this.onFC(e)
     e.preventDefault()
   }
 
   render() {
     return (
       <input type="text"
+        className={styles.input}
         value={this.state.v}
+        maxLength={7}
+
         onChange={this.onChange}
         onFocus={this.onFocus}
         onClick={this.onClick}

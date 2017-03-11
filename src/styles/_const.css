@@ -1,8 +1,10 @@
 /* size */
-$sz-w: 330px;
+$sz-w: 400px;
 $sz-h: 400px;
+$sz-padding: 30px;
 
 /* colors */
+$c-font: #EAEAEA;
 /*
 $c-blue-darker: #235ECC;
 $c-blue: #1966FB;

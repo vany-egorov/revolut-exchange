@@ -1,3 +1,5 @@
+@import "_const.css";
+
 .bar {
   position: absolute;
   bottom: 22px;
@@ -11,5 +13,9 @@
   background: none;
   border: none;
   outline: none;
-  color: white;
+  color: $c-font;
+
+  &:hover {
+    color: #B1B1B1;
+  }
 }

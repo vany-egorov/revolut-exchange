@@ -6,6 +6,8 @@ import * as actions from "../actions"
 import * as format from "../helpers/format"
 import * as currency from "../lib/currency"
 
+import styles from "../styles/header.css"
+
 
 class ExchangeRate extends React.Component {
   constructor(props) {
@@ -51,8 +53,8 @@ class ExchangeRate extends React.Component {
     const symbol2 = currency.symbol(this.state.dst)
 
     return (
-      <div>
-        <b>{symbol1}1 = {symbol2}{this.state.v}</b>
+      <div className={styles.rate}>
+        {symbol1}1 = {symbol2}{this.state.v}
       </div>
     )
   }

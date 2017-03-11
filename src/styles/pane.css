@@ -1,13 +1,13 @@
 @import "_const.css";
 
 .pane {
-  height: 50%;
   position: relative;
   color: $c-font;
   box-sizing: border-box;
 }
 
 .i {
+  height: 55%;
   background: linear-gradient(#0959DD, #2879FF);
 
   &::after {
@@ -24,6 +24,7 @@
   }
 }
 .o {
+  height: 45%;
   background: linear-gradient(#255FCF, #0E439D);
   padding-top: 40px;
 }

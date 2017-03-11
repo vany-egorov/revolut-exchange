@@ -2,6 +2,8 @@ import React from "react"
 
 import * as actions from "../actions"
 
+import styles from "../styles/header.css"
+
 
 class ExchangeButton extends React.Component {
   constructor(props) {
@@ -17,7 +19,10 @@ class ExchangeButton extends React.Component {
 
   render() {
     return (
-      <button onClick={this.onClick}>
+      <button
+        className={styles.button}
+        onClick={this.onClick}
+      >
         Exchange
       </button>
     )

@@ -1,10 +1,12 @@
 import React from "react"
 
+import styles from "../styles/header.css"
+
 
 class Header extends React.Component {
   render() {
     return (
-      <div className="header">
+      <div className={styles.header}>
         {this.props.children}
       </div>
     )

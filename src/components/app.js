@@ -12,6 +12,7 @@ import Nav from "./nav"
 import direction from "../lib/exchange-direction"
 
 import styles from "../styles/app.css"
+import stylesPane from "../styles/pane.css"
 
 
 class App extends React.Component {
@@ -21,33 +22,45 @@ class App extends React.Component {
       styles["container--16x9"]
     ]
 
-    return (
-      <section id="exchange" className={classNames(classes)}>
-        <Header>
-          <ExchangeRate store={this.props.store}/>
-          <ExchangeButton store={this.props.store}/>
-        </Header>
+    console.log(stylesPane)
 
-        <div>
-          <Pane
-            direction={direction.I}
-          >
+    return (
+      <section className={classNames(classes)}>
+
+        <Pane
+          direction={direction.I}
+        >
+          <Header>
+            <ExchangeRate store={this.props.store}/>
+            <ExchangeButton store={this.props.store}/>
+          </Header>
+
+          <div className={classNames(stylesPane.l)}>
             <Currency store={this.props.store} direction={direction.I}/>
             <Account store={this.props.store} direction={direction.I}/>
+          </div>
+          <div className={classNames(stylesPane.r)}>
             <Input store={this.props.store} direction={direction.I}/>
-            <Nav store={this.props.store} direction={direction.I}/>
-          </Pane>
+          </div>
+          <div className={classNames(stylesPane.clear)}/>
 
-          <Pane
-            direction={direction.O}
-          >
-            <Currency store={this.props.store} direction={direction.O}/>
+          <Nav store={this.props.store} direction={direction.I}/>
+        </Pane>
+
+        <Pane
+          direction={direction.O}
+        >
+          <div className={classNames(stylesPane.l)}>
             <Account store={this.props.store} direction={direction.O}/>
+            <Currency store={this.props.store} direction={direction.O}/>
+          </div>
+          <div className={classNames(stylesPane.r)}>
             <Input store={this.props.store} direction={direction.O}/>
-            <Nav store={this.props.store} direction={direction.O}/>
-          </Pane>
+          </div>
+          <div className={classNames(stylesPane.clear)}/>
 
-        </div>
+          <Nav store={this.props.store} direction={direction.O}/>
+        </Pane>
 
       </section>
     )

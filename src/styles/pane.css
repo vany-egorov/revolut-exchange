@@ -1,0 +1,22 @@
+@import "_const.css";
+
+.pane {
+  height: 50%;
+  color: white;
+
+  .l {
+    float: left;
+    width: 50%;
+  }
+  .r {
+    float: right;
+    width: 50%;
+  }
+  .clear { clear: both; }
+}
+.i { background: linear-gradient(#0959DD, #2879FF); }
+.o { background: linear-gradient(#255FCF, #0E439D); }
+
+.currency {
+
+}

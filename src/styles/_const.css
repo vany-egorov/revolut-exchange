@@ -1,6 +1,12 @@
 /* size */
-/* 16x9 */
-$sz-w: 720px;
-$sz-h: 405px;
+$sz-w: 330px;
+$sz-h: 400px;
 
 /* colors */
+/*
+$c-blue-darker: #235ECC;
+$c-blue: #1966FB;
+
+$c-i: $c-blue;
+$c-o: $c-blue-darker;
+*/

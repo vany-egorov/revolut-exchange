@@ -2,6 +2,7 @@ import _ from "lodash"
 import React from "react"
 
 import * as actions from "../actions"
+import * as currency from "../lib/currency"
 
 import styles from "../styles/account.css"
 
@@ -40,7 +41,7 @@ class Account extends React.Component {
     const accout = this.store.state.accout(this.props.direction)
     return {
       v: accout.v,
-      currency: accout.currency
+      currency: currency.parse(accout.currency)
     }
   }
 
@@ -53,9 +54,11 @@ class Account extends React.Component {
   onExchange() { this.setState(this.mapStateToProps()) }
 
   render() {
+    const symbol = currency.symbol(this.state.currency)
+
     return (
       <div className={styles.account}>
-        You have {this.state.v} {this.state.currency}
+        You have {symbol}{this.state.v}
       </div>
     )
   }

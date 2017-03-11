@@ -50,6 +50,7 @@ export {
   GBP,
   RUB,
 
+  parse,
   symbol,
   name
 }

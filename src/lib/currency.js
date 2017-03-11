@@ -1,8 +1,8 @@
-const USD = 0
-const EUR = 1
-const GBP = 2
-const RUB = 3
-const UNK = 100500
+let USD = 0
+let EUR = 1
+let GBP = 2
+let RUB = 3
+let UNK = 100500
 
 
 function parse(v) {
@@ -17,6 +17,7 @@ function parse(v) {
   case "GBP":
     return GBP
   case "RUB":
+  case "RUR":
     return RUB
   }
 
@@ -28,7 +29,7 @@ function symbol(v) {
   case USD: return "$"
   case EUR: return "€"
   case GBP: return "£"
-  case RUB: return "P"
+  case RUB: return "₽"
   default:  return "-"
   }
 }

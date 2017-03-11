@@ -2,44 +2,44 @@ import io from "socket.io-client"
 
 import * as actions from "./actions"
 import {default as BaseStore} from "./lib/store"
-import direction from "./lib/exchange-direction"
+import libDirection from "./lib/exchange-direction"
 import * as format from "./helpers/format"
 
 
 class Store extends BaseStore {
   setInitialState(state) { this.state = state }
 
-  onUIPrv(drc) {
+  onUIPrv(direction) {
     this.state.uiResetV()
-    this.state.getUI(drc).currency = this.state.prvCurrency(drc)
+    this.state.getUI(direction).currency = this.state.prvCurrency(direction)
 
     this
-      .emit(actions.stateChangeUIV(drc))
-      .emit(actions.stateChangeUIV(direction.other(drc)))
-      .emit(actions.stateChangeUICurrency(drc))
+      .emit(actions.stateChangeUIV(direction))
+      .emit(actions.stateChangeUIV(libDirection.other(direction)))
+      .emit(actions.stateChangeUICurrency(direction))
   }
 
-  onUINxt(drc) {
+  onUINxt(direction) {
     this.state.uiResetV()
-    this.state.getUI(drc).currency = this.state.nxtCurrency(drc)
+    this.state.getUI(direction).currency = this.state.nxtCurrency(direction)
 
     this
-      .emit(actions.stateChangeUIV(drc))
-      .emit(actions.stateChangeUIV(direction.other(drc)))
-      .emit(actions.stateChangeUICurrency(drc))
+      .emit(actions.stateChangeUIV(direction))
+      .emit(actions.stateChangeUIV(libDirection.other(direction)))
+      .emit(actions.stateChangeUICurrency(direction))
   }
 
-  onUIInputChange(drc, v) {
-    const srcDrc = drc  // source direction
-    const dstDrc = direction.other(drc)  // destination direction
+  onUIInputChange(direction, v) {
+    let srcDrc = direction  // source direction
+    let dstDrc = libDirection.other(direction)  // destination direction
 
     v = format.currency(this.state.getUI(srcDrc).v, v)
 
-    const rate = this.state.rate(
+    let rate = this.state.rate(
       this.state.getUI(srcDrc).currency,
       this.state.getUI(dstDrc).currency,
     )
-    this.state.getUI(srcDrc).v = format.round(v)
+    this.state.getUI(srcDrc).v = v
     this.state.getUI(dstDrc).v = format.round(v * rate)
 
     this
@@ -53,16 +53,16 @@ class Store extends BaseStore {
 
     this
       .emit(actions.stateExchange())
-      .emit(actions.stateChangeUIV(direction.I))
-      .emit(actions.stateChangeUIV(direction.O))
+      .emit(actions.stateChangeUIV(libDirection.Input))
+      .emit(actions.stateChangeUIV(libDirection.Output))
   }
 }
 
 
 function ioConnect(store) {
-  const host = window.location.hostname
-  const port = window.location.port
-  const url = `http://${host}:${port}`
+  let host = window.location.hostname
+  let port = window.location.port
+  let url = `http://${host}:${port}`
 
   io(url)
     .on("connect", function() {
@@ -77,13 +77,13 @@ function ioConnect(store) {
 }
 
 
-const store = new Store()
+let store = new Store()
 store.register((a) => {
   switch (a.type) {
-  case actions.UI_PRV:
+  case actions.UI_PREVIOUS:
     store.onUIPrv(a.direction)
     break
-  case actions.UI_NXT:
+  case actions.UI_NEXT:
     store.onUINxt(a.direction)
     break
   case actions.UI_INPUT_CHANGE:

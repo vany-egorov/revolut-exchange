@@ -1,7 +1,7 @@
 import direction from "./lib/exchange-direction"
 
 
-const preloadedState = {
+let preloadedState = {
   entities: {
     accounts: {
       byCurrency: {
@@ -40,11 +40,11 @@ const preloadedState = {
     }
   },
   ui: {
-    [direction.I]: {
+    [direction.Input]: {
       currency: "USD",
       v: 0
     },
-    [direction.O]: {
+    [direction.Output]: {
       currency: "EUR",
       v: 0
     }

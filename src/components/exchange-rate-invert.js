@@ -22,7 +22,7 @@ class ExchangeRateInvert extends React.Component {
   }
 
   componentDidMount() {
-    const u1 = this.props.store.on(
+    let u1 = this.props.store.on(
       actions.STATE_CHANGE_UI_CURRENCY, this.onStateChange)
 
     this.unsubs
@@ -30,27 +30,24 @@ class ExchangeRateInvert extends React.Component {
       .commit()
   }
 
-  componentWillUnmount() {
-    this.unsubs
-      .forEach((u) => { u() })
-  }
+  componentWillUnmount() { this.unsubs.forEach((u) => u) }
 
   mapStateToProps() {
-    const src = this.store.state.getUI(direction.I).currency
-    const dst = this.store.state.getUI(direction.O).currency
+    let source = this.store.state.getUI(direction.Input).currency
+    let destination = this.store.state.getUI(direction.Output).currency
 
     return {
-      v: format.round(this.store.state.rate(dst, src)),
-      src: currency.parse(dst),
-      dst: currency.parse(src)
+      v: format.round(this.store.state.rate(destination, source)),
+      source: currency.parse(destination),
+      destination: currency.parse(source)
     }
   }
 
   onStateChange() { this.setState(this.mapStateToProps()) }
 
   render() {
-    const symbol1 = currency.symbol(this.state.dst)
-    const symbol2 = currency.symbol(this.state.src)
+    let symbol1 = currency.symbol(this.state.destination)
+    let symbol2 = currency.symbol(this.state.source)
 
     return (
       <div className={styles["rate-invert"]}>

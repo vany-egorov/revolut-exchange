@@ -16,7 +16,7 @@
 
   $
 */
-const currencyRe = /^(:?0|(:?[1-9][0-9]*))(:?\.[0-9]{0,2})?$/
+let currencyRe = /^(:?0|(:?[1-9][0-9]*))(:?\.[0-9]{0,2})?$/
 
 
 // o => old
@@ -25,7 +25,7 @@ export function currency(o, n, maxLen=7) {
   o = o.toString()
   n = n.toString()
 
-  if (n == "") { return "0" }
+  if (n === "") { return "0" }
 
   // drop leading '0' char
   n = n.replace(/^0+/, "")

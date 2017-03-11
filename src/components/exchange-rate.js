@@ -22,7 +22,7 @@ class ExchangeRate extends React.Component {
   }
 
   componentDidMount() {
-    const u1 = this.props.store.on(
+    let u1 = this.props.store.on(
       actions.STATE_CHANGE_UI_CURRENCY, this.onStateChange)
 
     this.unsubs
@@ -30,14 +30,11 @@ class ExchangeRate extends React.Component {
       .commit()
   }
 
-  componentWillUnmount() {
-    this.unsubs
-      .forEach((u) => { u() })
-  }
+  componentWillUnmount() { this.unsubs.forEach((u) => u) }
 
   mapStateToProps() {
-    const src = this.store.state.getUI(direction.I).currency
-    const dst = this.store.state.getUI(direction.O).currency
+    let src = this.store.state.getUI(direction.Input).currency
+    let dst = this.store.state.getUI(direction.Output).currency
 
     return {
       v: format.round(this.store.state.rate(src, dst)),
@@ -49,8 +46,8 @@ class ExchangeRate extends React.Component {
   onStateChange() { this.setState(this.mapStateToProps()) }
 
   render() {
-    const symbol1 = currency.symbol(this.state.src)
-    const symbol2 = currency.symbol(this.state.dst)
+    let symbol1 = currency.symbol(this.state.src)
+    let symbol2 = currency.symbol(this.state.dst)
 
     return (
       <div className={styles.rate}>

@@ -1,18 +1,18 @@
-const I = 0  // in / top
-const O = 1  // out / bottom
+let Input = 0  // in / top
+let Output = 1  // out / bottom
 
 
 function other(v) {
-  if (v == I) {
-    return O
+  if (v === Input) {
+    return Output
   }
 
-  return I
+  return Input
 }
 
 
 export default {
-  I,
-  O,
+  Input,
+  Output,
   other
 }

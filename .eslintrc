@@ -35,7 +35,7 @@ rules:
   dot-location: [2, "property"]
 
   one-var: [2, "never"]
-  prefer-const: [2]
+  prefer-const: "off"
   no-bitwise: [2]
 
   object-curly-spacing: [2, "never"]

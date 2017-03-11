@@ -1,4 +1,4 @@
-import direction from "./lib/exchange-direction"
+import libDirection from "./lib/exchange-direction"
 import * as format from "./helpers/format"
 
 
@@ -9,59 +9,59 @@ class State {
   }
 
   exchange() {
-    const vI = this.ui[direction.I].v
-    const vO = this.ui[direction.O].v
+    let valueInput = format.round(this.ui[libDirection.Input].v)
+    let valueOutput = format.round(this.ui[libDirection.Output].v)
 
-    const aI = this.accout(direction.I)
-    const aO = this.accout(direction.O)
+    let accountInput = this.account(libDirection.Input)
+    let accountOutput = this.account(libDirection.Output)
 
-    aI.v -= vI
-    aO.v += vO
+    accountInput.v -= valueInput
+    accountOutput.v += valueOutput
 
-    aI.v = format.round(aI.v)
-    aO.v = format.round(aO.v)
+    accountInput.v = format.round(accountInput.v)
+    accountOutput.v = format.round(accountOutput.v)
   }
 
   // src => source currency
   // dst => destination currency
   rate(src, dst) {
-    const s = this.entities.rates.byCurrency
-    const rSrc = s[src]
-    const rDst = s[dst]
-    const rBase = s[this.entities.rates.base]  // 1
+    let s = this.entities.rates.byCurrency
+    let rSrc = s[src]
+    let rDst = s[dst]
+    let rBase = s[this.entities.rates.base]  // 1
 
     return (rBase/rSrc)*rDst
   }
 
-  nxtCurrency(drc) {
-    const [index, len] = this._nxtPrvCurrency(drc)
+  nxtCurrency(direction) {
+    let [index, len] = this._nxtPrvCurrency(direction)
     return this.entities.accounts.allCurrencies[(index+1) % len]
   }
 
-  prvCurrency(drc) {
-    const [index, len] = this._nxtPrvCurrency(drc)
+  prvCurrency(direction) {
+    let [index, len] = this._nxtPrvCurrency(direction)
     return this.entities.accounts.allCurrencies[(index-1) < 0 ? len-1 : index-1]
   }
 
-  accout(drc) {
-    const currency = this.getUI(drc).currency
+  account(direction) {
+    let currency = this.getUI(direction).currency
     return this.entities.accounts.byCurrency[currency]
   }
 
-  getUI(drc) {
-    return this.ui[drc]
+  getUI(direction) {
+    return this.ui[direction]
   }
 
   uiResetV() {
-    this.ui[direction.I].v = 0
-    this.ui[direction.O].v = 0
+    this.ui[libDirection.Input].v = 0
+    this.ui[libDirection.Output].v = 0
   }
 
   // private
-  _nxtPrvCurrency(drc) {
-    const c = this.getUI(drc).currency
-    const index = this.entities.accounts.allCurrencies.indexOf(c)
-    const len = this.entities.accounts.allCurrencies.length
+  _nxtPrvCurrency(direction) {
+    let c = this.getUI(direction).currency
+    let index = this.entities.accounts.allCurrencies.indexOf(c)
+    let len = this.entities.accounts.allCurrencies.length
 
     return [index, len]
   }

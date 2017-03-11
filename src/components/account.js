@@ -21,9 +21,9 @@ class Account extends React.Component {
   }
 
   componentDidMount() {
-    const u1 = this.props.store.on(
+    let u1 = this.props.store.on(
       actions.STATE_CHANGE_UI_CURRENCY, this.onStateCurrency)
-    const u2 = this.props.store.on(
+    let u2 = this.props.store.on(
       actions.STATE_EXCHANGE, this.onExchange)
 
     this.unsubs
@@ -32,16 +32,13 @@ class Account extends React.Component {
       .commit()
   }
 
-  componentWillUnmount() {
-    this.unsubs
-      .forEach((u) => { u() })
-  }
+  componentWillUnmount() { this.unsubs.forEach((u) => u) }
 
   mapStateToProps() {
-    const accout = this.store.state.accout(this.props.direction)
+    let account = this.store.state.account(this.props.direction)
     return {
-      v: accout.v,
-      currency: currency.parse(accout.currency)
+      v: account.v,
+      currency: currency.parse(account.currency)
     }
   }
 
@@ -54,7 +51,7 @@ class Account extends React.Component {
   onExchange() { this.setState(this.mapStateToProps()) }
 
   render() {
-    const symbol = currency.symbol(this.state.currency)
+    let symbol = currency.symbol(this.state.currency)
 
     return (
       <div className={styles.account}>

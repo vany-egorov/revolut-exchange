@@ -19,7 +19,7 @@ class Currency extends React.Component {
   }
 
   componentDidMount() {
-    const u1 = this.props.store.on(
+    let u1 = this.props.store.on(
       actions.STATE_CHANGE_UI_CURRENCY, this.onStateChange)
 
     this.unsubs
@@ -27,14 +27,11 @@ class Currency extends React.Component {
       .commit()
   }
 
-  componentWillUnmount() {
-    this.unsubs
-      .forEach((u) => { u() })
-  }
+  componentWillUnmount() { this.unsubs.forEach((u) => u) }
 
   mapStateToProps() {
     return {
-      v: this.store.state.accout(this.props.direction).currency
+      v: this.store.state.account(this.props.direction).currency
     }
   }
 

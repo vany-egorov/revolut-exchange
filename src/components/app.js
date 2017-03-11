@@ -18,18 +18,16 @@ import stylesPane from "../styles/pane.css"
 
 class App extends React.Component {
   render() {
-    const classes = [
+    let classes = [
       styles.container,
       styles["container--16x9"]
     ]
-
-    console.log(stylesPane)
 
     return (
       <section className={classNames(classes)}>
 
         <Pane
-          direction={direction.I}
+          direction={direction.Input}
         >
           <Header>
             <ExchangeRate store={this.props.store}/>
@@ -37,31 +35,31 @@ class App extends React.Component {
           </Header>
 
           <div className={classNames(stylesPane.l)}>
-            <Currency store={this.props.store} direction={direction.I}/>
-            <Account store={this.props.store} direction={direction.I}/>
+            <Currency store={this.props.store} direction={direction.Input}/>
+            <Account store={this.props.store} direction={direction.Input}/>
           </div>
           <div className={classNames(stylesPane.r)}>
-            <Input store={this.props.store} direction={direction.I}/>
+            <Input store={this.props.store} direction={direction.Input}/>
           </div>
           <div className={stylesPane.clear}/>
 
-          <Nav store={this.props.store} direction={direction.I}/>
+          <Nav store={this.props.store} direction={direction.Input}/>
         </Pane>
 
         <Pane
-          direction={direction.O}
+          direction={direction.Output}
         >
           <div className={stylesPane.l}>
-            <Currency store={this.props.store} direction={direction.O}/>
-            <Account store={this.props.store} direction={direction.O}/>
+            <Currency store={this.props.store} direction={direction.Output}/>
+            <Account store={this.props.store} direction={direction.Output}/>
           </div>
           <div className={stylesPane.r}>
-            <Input store={this.props.store} direction={direction.O}/>
+            <Input store={this.props.store} direction={direction.Output}/>
             <ExchangeRateInvert store={this.props.store}/>
           </div>
           <div className={stylesPane.clear}/>
 
-          <Nav store={this.props.store} direction={direction.O}/>
+          <Nav store={this.props.store} direction={direction.Output}/>
         </Pane>
 
       </section>

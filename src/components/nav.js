@@ -11,25 +11,25 @@ class Nav extends React.Component {
 
     this.store = this.props.store
 
-    this.onPrv = this.onPrv.bind(this)
-    this.onNxt = this.onNxt.bind(this)
+    this.onPrevious = this.onPrevious.bind(this)
+    this.onNext = this.onNext.bind(this)
   }
 
-  onPrv(e) {
-    this.store.dispatch(actions.uiPrv(this.props.direction))
+  onPrevious(e) {
+    this.store.dispatch(actions.uiPrevious(this.props.direction))
     e.preventDefault()
   }
 
-  onNxt(e) {
-    this.store.dispatch(actions.uiNxt(this.props.direction))
+  onNext(e) {
+    this.store.dispatch(actions.uiNext(this.props.direction))
     e.preventDefault()
   }
 
   render() {
     return (
       <div className={styles.bar}>
-        <button onClick={this.onPrv} className={styles.btn}>{"<"}</button>
-        <button onClick={this.onNxt} className={styles.btn}>{">"}</button>
+        <button onClick={this.onPrevious} className={styles.btn}>{"<"}</button>
+        <button onClick={this.onNext} className={styles.btn}>{">"}</button>
       </div>
     )
   }

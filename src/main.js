@@ -9,16 +9,16 @@ import preloadedState from "./preloaded-state"
 import "./styles/index.css"
 
 
-const renderApp = (root, store) => {
+let renderApp = (root, store) => {
   ReactDOM.render(<App store={store}/>, root)
 }
-const renderRedBox = (root, e) => {
-  const RedBox = require("redbox-react").default
+let renderRedBox = (root, e) => {
+  let RedBox = require("redbox-react").default
   ReactDOM.render(<RedBox error={e} />, root)
 }
 
-const root = document.getElementById("root")
-const state = new State(preloadedState)
+let root = document.getElementById("root")
+let state = new State(preloadedState)
 store.setInitialState(state)
 let main = renderApp
 

@@ -8,10 +8,10 @@ import styles from "../styles/pane.css"
 
 class Pane extends React.Component {
   render() {
-    const classes = {
+    let classes = {
       [styles.pane]: true,
-      [styles.i]: this.props.direction == direction.I,
-      [styles.o]: this.props.direction == direction.O
+      [styles.i]: this.props.direction === direction.Input,
+      [styles.o]: this.props.direction === direction.Output
     }
 
     return (

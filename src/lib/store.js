@@ -12,7 +12,7 @@ class Store {
   dispatch(action) { this.i.push(action) }
 
   register(handler) {
-    const unsub = this.i
+    let unsub = this.i
       .doAction(() => { /* middleware */ })
       .onValue(handler)
 
@@ -29,13 +29,12 @@ class Store {
 
   on(actionType, callback) {
     return this.o
-      .filter((a) => { return a.type == actionType })
+      .filter((a) => { return a.type === actionType })
       .onValue(callback)
   }
 
   destructor() {
-    this.unsubs
-      .forEach((u) => { u() })
+    this.unsubs.forEach((u) => u)
 
     this.i.end()
     this.o.end()

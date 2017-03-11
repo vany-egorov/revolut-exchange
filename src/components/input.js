@@ -22,7 +22,7 @@ class Input extends React.Component {
   }
 
   componentDidMount() {
-    const u1 = this.props.store.on(
+    let u1 = this.props.store.on(
       actions.STATE_CHANGE_UI_V, this.onStateChange)
 
     this.unsubs
@@ -30,10 +30,7 @@ class Input extends React.Component {
       .commit()
   }
 
-  componentWillUnmount() {
-    this.unsubs
-      .forEach((u) => { u() })
-  }
+  componentWillUnmount() { this.unsubs.forEach((u) => u) }
 
   mapStateToProps() {
     return {
@@ -53,7 +50,7 @@ class Input extends React.Component {
   }
 
   onFC(e) {
-    const len = e.target.value.length
+    let len = e.target.value.length
     e.target.setSelectionRange(len,len)
   }
 

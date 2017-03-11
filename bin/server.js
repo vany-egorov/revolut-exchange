@@ -60,11 +60,14 @@ io.on("connection", function(socket) {
   const stream = ticker.merge(new Bacon.once(1))
 
   const unsub = stream.onValue(() => {
+    return
+
     rates
       .fetch()
       .then(() => {
         socket.emit("rates", rates.apify())
       })
+      .catch((e) => { log(e) })
   })
 
   socket.on("disconnect", () => { unsub() })

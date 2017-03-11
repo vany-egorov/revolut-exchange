@@ -1,22 +1,38 @@
+import direction from "./lib/exchange-direction"
+
+
 const preloadedState = {
   entities: {
     accounts: {
       byCurrency: {
-        "USD": 100.12,
-        "EUR": 200.34,
-        "GBP": 300.56,
-        "RUB": 400.78
+        "USD": {
+          v: 100.12,
+          currency: "USD"
+        },
+        "EUR": {
+          v: 200.34,
+          currency: "EUR"
+        },
+        "GBP": {
+          v: 300.56,
+          currency: "GBP"
+        },
+        "RUB": {
+          v: 400.78,
+          currency: "RUB"
+        }
       },
       allCurrencies: [
         "USD", "EUR", "GBP", "RUB"
       ]
     },
     rates: {
+      base: "USD",
       byCurrency: {
         "USD": 1,
-        "EUR": 0.938332,
-        "GBP": 0.821928,
-        "RUB": 58.97305
+        "EUR": 0.936899,
+        "GBP": 0.821827,
+        "RUB": 59.02142
       },
       allCurrencies: [
         "USD", "EUR", "GBP", "RUB"
@@ -24,11 +40,11 @@ const preloadedState = {
     }
   },
   ui: {
-    i: {
+    [direction.I]: {
       currency: "USD",
       v: 0
     },
-    o: {
+    [direction.O]: {
       currency: "EUR",
       v: 0
     }

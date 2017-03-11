@@ -1,8 +1,9 @@
 import React from "react"
 import ReactDOM from "react-dom"
 
-import App from "./containers/app"
-import {configureStore, ioConnect} from "./store"
+import App from "./components/app"
+import {store, ioConnect} from "./store"
+import State from "./state"
 import preloadedState from "./preloaded-state"
 
 
@@ -15,7 +16,8 @@ const renderRedBox = (root, e) => {
 }
 
 const root = document.getElementById("root")
-const store = configureStore(preloadedState)
+const state = new State(preloadedState)
+store.setInitialState(state)
 let main = renderApp
 
 if (__DEV__) {

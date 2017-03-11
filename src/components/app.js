@@ -1,10 +1,14 @@
 import React from "react"
 import classNames from "classnames"
 
+import Header from "./header"
+import ExchangeRate from "./exchange-rate"
+import ExchangeButton from "./exchange-button"
 import Pane from "./pane"
+import Currency from "./currency"
+import Account from "./account"
 import Input from "./input"
 import Nav from "./nav"
-import Header from "./header"
 import direction from "../lib/exchange-direction"
 
 import styles from "../styles/app.css"
@@ -19,21 +23,28 @@ class App extends React.Component {
 
     return (
       <section id="exchange" className={classNames(classes)}>
-        <Header/>
+        <Header>
+          <ExchangeRate store={this.props.store}/>
+          <ExchangeButton store={this.props.store}/>
+        </Header>
 
         <div>
           <Pane
             direction={direction.I}
           >
-            <Input direction={direction.I}/>
-            <Nav/>
+            <Currency store={this.props.store} direction={direction.I}/>
+            <Account store={this.props.store} direction={direction.I}/>
+            <Input store={this.props.store} direction={direction.I}/>
+            <Nav store={this.props.store} direction={direction.I}/>
           </Pane>
 
           <Pane
             direction={direction.O}
           >
-            <Input direction={direction.O}/>
-            <Nav/>
+            <Currency store={this.props.store} direction={direction.O}/>
+            <Account store={this.props.store} direction={direction.O}/>
+            <Input store={this.props.store} direction={direction.O}/>
+            <Nav store={this.props.store} direction={direction.O}/>
           </Pane>
 
         </div>

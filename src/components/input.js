@@ -1,41 +1,72 @@
+import _ from "lodash"
 import React from "react"
-import {connect} from "react-redux"
 
 import * as actions from "../actions"
 
 
-const Input = (props) => {
-  return (
-    <input type="text"
-      value={props.value}
-      onChange={props.onChange}
-      onFocus={props.onFocus}
-      onClick={props.onClick}
-    />
-  )
-}
+class Input extends React.Component {
+  constructor(props) {
+    super(props)
 
+    this.store = this.props.store
+    this.unsubs = _([])
 
-function mapStateToProps(state, ownProps) {
-  console.log(ownProps)
-  return {
-    value: state.ui.i.value
+    this.state = this.mapStateToProps()
+
+    this.onStateChange = this.onStateChange.bind(this)
+    this.onChange = this.onChange.bind(this)
+    this.onFocus = this.onFocus.bind(this)
+    this.onClick = this.onClick.bind(this)
   }
-}
 
-function mapDispatchToProps(dispatch, ownProps) {
-  console.log(ownProps)
-  return {
-    onChange: (e) => {
-      dispatch(actions.uiInputChange(ownProps.direction, e.target.value))
-    },
-    onFocus: (e) => {
-      dispatch(actions.uiInputFocus(ownProps.direction, e.target.value))
-    },
-    onClick: (e) => {
-      dispatch(actions.uiInputClick(ownProps.direction, e.target.value))
+  componentDidMount() {
+    const u1 = this.props.store.on(actions.STATE_CHANGE_UI, this.onStateChange)
+
+    this.unsubs
+      .push(u1)
+      .commit()
+  }
+
+  componentWillUnmount() {
+    this.unsubs
+      .forEach((u) => { u() })
+  }
+
+  mapStateToProps() {
+    return {
+      v: this.store.state.getUI(this.props.direction).v
     }
   }
+
+  onStateChange(a) {
+    if (a.direction != this.props.direction) { return }
+    this.setState(this.mapStateToProps())
+  }
+
+  onChange(e) {
+    this.store.dispatch(
+      actions.uiInputChange(this.props.direction, e.target.value))
+    e.preventDefault()
+  }
+
+  onFocus(e) {
+    e.preventDefault()
+  }
+
+  onClick(e) {
+    e.preventDefault()
+  }
+
+  render() {
+    return (
+      <input type="text"
+        value={this.state.v}
+        onChange={this.onChange}
+        onFocus={this.onFocus}
+        onClick={this.onClick}
+      />
+    )
+  }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Input)
+export default Input

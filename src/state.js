@@ -1,4 +1,5 @@
 import direction from "./lib/exchange-direction"
+import * as format from "./helpers/format"
 
 
 class State {
@@ -16,6 +17,9 @@ class State {
 
     aI.v -= vI
     aO.v += vO
+
+    aI.v = format.round(aI.v)
+    aO.v = format.round(aO.v)
   }
 
   // src => source currency

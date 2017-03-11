@@ -39,7 +39,7 @@ class Store extends BaseStore {
       this.state.getUI(srcDrc).currency,
       this.state.getUI(dstDrc).currency,
     )
-    this.state.getUI(srcDrc).v = v
+    this.state.getUI(srcDrc).v = format.round(v)
     this.state.getUI(dstDrc).v = format.round(v * rate)
 
     this

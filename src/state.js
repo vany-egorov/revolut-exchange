@@ -7,6 +7,17 @@ class State {
     this.ui = initial.ui
   }
 
+  exchange() {
+    const vI = this.ui[direction.I].v
+    const vO = this.ui[direction.O].v
+
+    const aI = this.accout(direction.I)
+    const aO = this.accout(direction.O)
+
+    aI.v -= vI
+    aO.v += vO
+  }
+
   // src => source currency
   // dst => destination currency
   rate(src, dst) {

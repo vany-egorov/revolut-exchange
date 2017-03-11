@@ -20,7 +20,8 @@ class Input extends React.Component {
   }
 
   componentDidMount() {
-    const u1 = this.props.store.on(actions.STATE_CHANGE_UI, this.onStateChange)
+    const u1 = this.props.store.on(
+      actions.STATE_CHANGE_UI_V, this.onStateChange)
 
     this.unsubs
       .push(u1)

@@ -13,15 +13,19 @@ class Account extends React.Component {
 
     this.state = this.mapStateToProps()
 
-    this.onStateChange = this.onStateChange.bind(this)
+    this.onStateCurrency = this.onStateCurrency.bind(this)
+    this.onExchange = this.onExchange.bind(this)
   }
 
   componentDidMount() {
     const u1 = this.props.store.on(
-      actions.STATE_CHANGE_UI_CURRENCY, this.onStateChange)
+      actions.STATE_CHANGE_UI_CURRENCY, this.onStateCurrency)
+    const u2 = this.props.store.on(
+      actions.STATE_EXCHANGE, this.onExchange)
 
     this.unsubs
       .push(u1)
+      .push(u2)
       .commit()
   }
 
@@ -38,14 +42,15 @@ class Account extends React.Component {
     }
   }
 
-  onStateChange(a) {
+  onStateCurrency(a) {
     if (a.direction != this.props.direction) { return }
 
     this.setState(this.mapStateToProps())
   }
 
-  render() {
+  onExchange() { this.setState(this.mapStateToProps()) }
 
+  render() {
     return (
       <div>
         You have {this.state.v} {this.state.currency}

@@ -4,6 +4,7 @@ html {
 
 body {
   background: #333;
+  user-select: none;
 }
 
 *,

@@ -2,8 +2,9 @@ import _ from "lodash"
 import React from "react"
 
 import direction from "../lib/exchange-direction"
-import * as format from "../helpers/format"
 import * as actions from "../actions"
+import * as format from "../helpers/format"
+import * as currency from "../lib/currency"
 
 
 class ExchangeRate extends React.Component {
@@ -38,17 +39,20 @@ class ExchangeRate extends React.Component {
 
     return {
       v: format.round(this.store.state.rate(src, dst)),
-      src: src,
-      dst: dst
+      src: currency.parse(src),
+      dst: currency.parse(dst)
     }
   }
 
   onStateChange() { this.setState(this.mapStateToProps()) }
 
   render() {
+    const symbol1 = currency.symbol(this.state.src)
+    const symbol2 = currency.symbol(this.state.dst)
+
     return (
       <div>
-        <b>1 {this.state.src} = {this.state.v} {this.state.dst}</b>
+        <b>{symbol1}1 = {symbol2}{this.state.v}</b>
       </div>
     )
   }

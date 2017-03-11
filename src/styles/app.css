@@ -2,6 +2,7 @@
 
 .container {
   margin: 0 auto;
+  font-family: Arial, sans-serif;
 
   &--16x9 {
     width: $sz-w;

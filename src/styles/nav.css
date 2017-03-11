@@ -1,0 +1,15 @@
+.bar {
+  position: absolute;
+  bottom: 22px;
+  text-align: center;
+  width: 100%;
+}
+
+.btn {
+  cursor: pointer;
+  font-size: 30px;
+  background: none;
+  border: none;
+  outline: none;
+  color: white;
+}

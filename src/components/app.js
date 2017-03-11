@@ -42,7 +42,7 @@ class App extends React.Component {
           <div className={classNames(stylesPane.r)}>
             <Input store={this.props.store} direction={direction.I}/>
           </div>
-          <div className={classNames(stylesPane.clear)}/>
+          <div className={stylesPane.clear}/>
 
           <Nav store={this.props.store} direction={direction.I}/>
         </Pane>
@@ -50,14 +50,14 @@ class App extends React.Component {
         <Pane
           direction={direction.O}
         >
-          <div className={classNames(stylesPane.l)}>
+          <div className={stylesPane.l}>
             <Account store={this.props.store} direction={direction.O}/>
             <Currency store={this.props.store} direction={direction.O}/>
           </div>
-          <div className={classNames(stylesPane.r)}>
+          <div className={stylesPane.r}>
             <Input store={this.props.store} direction={direction.O}/>
           </div>
-          <div className={classNames(stylesPane.clear)}/>
+          <div className={stylesPane.clear}/>
 
           <Nav store={this.props.store} direction={direction.O}/>
         </Pane>

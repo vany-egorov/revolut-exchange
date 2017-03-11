@@ -2,6 +2,8 @@ import React from "react"
 
 import * as actions from "../actions"
 
+import styles from "../styles/nav.css"
+
 
 class Nav extends React.Component {
   constructor(props) {
@@ -25,9 +27,9 @@ class Nav extends React.Component {
 
   render() {
     return (
-      <div>
-        <button onClick={this.onPrv}>{"<"}</button>
-        <button onClick={this.onNxt}>{">"}</button>
+      <div className={styles.bar}>
+        <button onClick={this.onPrv} className={styles.btn}>{"<"}</button>
+        <button onClick={this.onNxt} className={styles.btn}>{">"}</button>
       </div>
     )
   }

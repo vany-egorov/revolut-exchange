@@ -26,6 +26,25 @@ $ yarn brod
 $ ls -lah ./dist
 ```
 
+Config
+------
+
+[Main development configuration file](server/config)
+
+Randomize endpoint:
+```javascript
+{api: {
+  randomize: true, // randomize/mock API data
+}}
+```
+
+Poll period:
+```javascript
+{api: {
+  pollPeriod: 30 // seconds
+}}
+```
+
 Task
 ----
 

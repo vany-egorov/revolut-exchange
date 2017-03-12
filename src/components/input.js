@@ -67,6 +67,12 @@ class Input extends React.Component {
       this.store.dispatch(
         actions.uiInputFocusChange(this.props.direction))
       e.preventDefault()
+    } else if (e.keyCode === keycode.z) {
+      this.store.dispatch(actions.uiPrevious(this.props.direction))
+      e.preventDefault()
+    } else if (e.keyCode === keycode.x) {
+      this.store.dispatch(actions.uiNext(this.props.direction))
+      e.preventDefault()
     }
   }
 

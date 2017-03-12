@@ -3,6 +3,7 @@ import React from "react"
 
 import * as actions from "../actions"
 import * as currency from "../lib/currency"
+import * as humanize from "../helpers/humanize"
 
 import styles from "../styles/account.css"
 
@@ -55,7 +56,7 @@ class Account extends React.Component {
 
     return (
       <div className={styles.account}>
-        You have {symbol}{this.state.v}
+        You have {symbol}{humanize.currency(this.state.v)}
       </div>
     )
   }

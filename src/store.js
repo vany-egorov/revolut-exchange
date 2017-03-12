@@ -9,9 +9,10 @@ import * as format from "./helpers/format"
 class Store extends BaseStore {
   setInitialState(state) { this.state = state }
 
-  onUIPrv(direction) {
+  onUIPrevious(direction) {
     this.state.uiResetV()
-    this.state.getUI(direction).currency = this.state.prvCurrency(direction)
+    this.state.getUI(direction).currency =
+      this.state.previousCurrency(direction)
 
     this
       .emit(actions.stateChangeUIV(direction))
@@ -19,9 +20,9 @@ class Store extends BaseStore {
       .emit(actions.stateChangeUICurrency(direction))
   }
 
-  onUINxt(direction) {
+  onUINext(direction) {
     this.state.uiResetV()
-    this.state.getUI(direction).currency = this.state.nxtCurrency(direction)
+    this.state.getUI(direction).currency = this.state.nextCurrency(direction)
 
     this
       .emit(actions.stateChangeUIV(direction))
@@ -95,10 +96,10 @@ let store = new Store()
 store.register((a) => {
   switch (a.type) {
   case actions.UI_PREVIOUS:
-    store.onUIPrv(a.direction)
+    store.onUIPrevious(a.direction)
     break
   case actions.UI_NEXT:
-    store.onUINxt(a.direction)
+    store.onUINext(a.direction)
     break
   case actions.UI_INPUT_CHANGE:
     store.onUIInputChange(a.direction, a.v)

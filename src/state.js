@@ -27,7 +27,7 @@ class State {
   gotOverdraft() {
     let value = format.round(this.ui[libDirection.Input].v)
     let account = this.account(libDirection.Input)
-    return ((account.v - value) < 0) ? true : false
+    return ((account.v - value) < 0)
   }
 
   areUIVZero() {
@@ -82,13 +82,13 @@ class State {
     this.getUI(destinationDirection).v = format.round(v * rate)
   }
 
-  nxtCurrency(direction) {
-    let [currencies, index] = this._nxtPrvCurrency(direction)
+  nextCurrency(direction) {
+    let [currencies, index] = this._nextPreviousCurrency(direction)
     return currencies[(index+1) % currencies.length]
   }
 
-  prvCurrency(direction) {
-    let [currencies, index] = this._nxtPrvCurrency(direction)
+  previousCurrency(direction) {
+    let [currencies, index] = this._nextPreviousCurrency(direction)
     return currencies[(index-1) < 0 ? currencies.length-1 : index-1]
   }
 
@@ -107,12 +107,11 @@ class State {
   }
 
   // private
-  _nxtPrvCurrency(direction) {
+  _nextPreviousCurrency(direction) {
     let without = this.getUI(libDirection.other(direction)).currency
     let currencies = this.entities.accounts.allCurrencies
       .filter(x => x !== without)
     let index = currencies.indexOf(this.getUI(direction).currency)
-    console.log(currencies)
 
     return [currencies, index]
   }

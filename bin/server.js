@@ -1,17 +1,16 @@
 const express = require("express")
-const proxy = require("http-proxy-middleware")
 const webpack = require("webpack")
 const http = require("http")
 const socketIO = require("socket.io")
 const Bacon = require("baconjs")
 const {resolve} = require("path")
 
-const {log} = require("./common/log")
-const compiler = require("./tasks/webpack/compiler")()
-const config = require("./config")
-const webpackConfig = require("./tasks/webpack/config")
-const Currencies = require("./server/entities/currencies.js")
-const Rates = require("./server/entities/rates.js")
+const {log} = require("../server/common/log")
+const compiler = require("../server/tasks/webpack/compiler")()
+const config = require("../server/config")
+const webpackConfig = require("../server/tasks/webpack/config")
+const Currencies = require("../server/server/entities/currencies.js")
+const Rates = require("../server/server/entities/rates.js")
 
 const app = express()
 const router = express.Router()
@@ -60,7 +59,8 @@ io.on("connection", function(socket) {
     }
   )
 
-  const once = new Bacon.once() // force update at startup
+  // force update at startup
+  const once = new Bacon.once()
 
   const stream = ticker.merge(new Bacon.once(1))
 

@@ -11,7 +11,7 @@ const config = {
   env: env.parse(process.env.UI_ENV || "development"),
 
   path: {
-    indexHtml: resolve("bin", "html", "index.html"),
+    indexHtml: resolve("server", "html", "index.html"),
     static: resolve("static"),
     dist: resolve("dist"),
     favicon: resolve("static", "favicon.png"),

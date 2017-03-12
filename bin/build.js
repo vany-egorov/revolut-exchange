@@ -1,9 +1,7 @@
 #!/usr/bin/env node
-const {log, error} = require("./common/log")
-const {EXIT_FAILURE} = require("./common/exit-status")
-
-const taskWebpack = require("./tasks/webpack")
-const taskCp = require("./tasks/cp")
+const {log, error} = require("../server/common/log")
+const taskWebpack = require("../server/tasks/webpack")
+const taskCp = require("../server/tasks/cp")
 
 
 function main() {

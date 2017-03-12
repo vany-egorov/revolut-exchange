@@ -1,0 +1,23 @@
+.legend {
+  color: #7C7C7C;
+  font-size: 12px;
+  font-weight: normal;
+  margin-top: 10px;
+  margin-left: 27px;
+
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+  background: transparent;
+
+  th, td {
+    vertical-align: middle;
+  }
+
+  th {
+    font-size: 16px;
+    min-width: 30px;
+    text-align: left;
+  }
+}

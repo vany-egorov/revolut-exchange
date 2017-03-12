@@ -10,6 +10,7 @@ import Currency from "./currency"
 import Account from "./account"
 import Input from "./input"
 import Nav from "./nav"
+import Legend from "./legend"
 import direction from "../lib/exchange-direction"
 
 import styles from "../styles/app.css"
@@ -61,6 +62,8 @@ class App extends React.Component {
 
           <Nav store={this.props.store} direction={direction.Output}/>
         </Pane>
+
+        <Legend/>
 
       </section>
     )

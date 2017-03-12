@@ -18,6 +18,10 @@ function Legend() {
         <th>s</th>
         <td>Swap currencies</td>
       </tr>
+      <tr>
+        <th>TAB</th>
+        <td>Switch accounts/inputs</td>
+      </tr>
     </tbody></table>
   )
 }

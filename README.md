@@ -1,3 +1,34 @@
+How to Use
+----------
+
+Install and build this app with:
+
+``` bash
+$ cd revolut-exchange
+$ yarn
+$ yarn server
+```
+
+or with npm:
+```
+$ cd revolut-exchange
+$ npm i
+$ npm run server
+```
+
+And open [http://127.0.0.1:1024](http://127.0.0.1:1024).
+
+production build:
+```
+$ cd revolut-exchange
+$ yarn
+$ yarn brod
+$ ls -lah ./dist
+```
+
+Task
+----
+
 Meta:
 
 * Open the current Revolut app, on either iOS or Android, and navigate to the exchange screen.

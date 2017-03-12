@@ -2,6 +2,10 @@ node_modules
 
 static/*
 !static/.keep
+!static/favicon.png
+
+dist/*
+!dist/.keep
 
 !src/lib
 !bin/lib

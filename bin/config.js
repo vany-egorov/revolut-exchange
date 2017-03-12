@@ -5,13 +5,22 @@
 const {resolve} = require("path")
 const env = require("./common/env")
 const {log} = require("./common/log")
+const apiKind = require("./common/api-kind")
 
 const config = {
   env: env.parse(process.env.UI_ENV || "development"),
 
   path: {
     indexHtml: resolve("bin", "html", "index.html"),
+    static: resolve("static"),
+    dist: resolve("dist"),
+    favicon: resolve("static", "favicon.png"),
     hmr: "/__webpack_hmr",
+  },
+
+  api: {
+    kind: apiKind.OpenExchange,
+    appID: "0421e1c208094556b8a11f2badebc230",
   },
 
   hmr: {
@@ -34,10 +43,17 @@ function toLog(v) {
 
   log(`${p}path(various paths):`)
   log(`${p}  index-html: "${v.path.indexHtml}"`)
+  log(`${p}  favicon: "${v.path.favicon}"`)
+  log(`${p}  dist: "${v.path.dist}"`)
+  log(`${p}  static: "${v.path.static}"`)
   log(`${p}  hmr: "${v.path.hmr}"`)
 
   log(`${p}hmr:`)
   log(`${p}  heartbeat: ${v.hmr.heartbeat}`)
+
+  log(`${p}api(remote exchange API):`)
+  log(`${p}  kind: "${apiKind.name(v.api.kind)}"`)
+  log(`${p}  appID: "${v.api.appID}"`)
 
   log(`${p}server-local(nodejs/express local server settings):`)
   log(`${p}  host: 0.0.0.0`)

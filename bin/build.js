@@ -12,10 +12,10 @@ function main() {
 
   pipe
     .then(() => {
-      log("compilation OK")
+      log("OK")
     })
     .catch((err) => {
-      error(`compilation error: "${err}"`)
+      error(`error: "${err}"`)
     })
 }
 

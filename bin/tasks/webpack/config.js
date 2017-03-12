@@ -1,5 +1,6 @@
 const {resolve} = require("path")
 const webpack = require("webpack")
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ProgressBarPlugin = require("progress-bar-webpack-plugin")
 // const ClosureCompilerPlugin = require("webpack-closure-compiler")
 const CompressionPlugin = require("compression-webpack-plugin")
@@ -13,9 +14,9 @@ const webpackConfig = {
     reasons: false
   },
   output: {
-    path: resolve("static"),
+    filename: "main.js",
+    path: config.path.dist,
     publicPath: "/",
-    filename: "main.js"
   },
   module: {
     rules: [
@@ -57,6 +58,17 @@ const webpackConfig = {
       "__PROD__": env.isProd(config.env),
       "__SERVER__": `127.0.0.1:${config.serverLocal.port}`,
     }),
+    new HtmlWebpackPlugin({
+      template: config.path.indexHtml,
+      hash: false,
+      filename: "index.html",
+      favicon: config.path.favicon,
+      title: "RevolutApp",
+      inject: "body",
+      minify: {
+        collapseWhitespace: true
+      }
+    })
   ]
 }
 

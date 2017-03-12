@@ -4,6 +4,7 @@ const webpack = require("webpack")
 const http = require("http")
 const socketIO = require("socket.io")
 const Bacon = require("baconjs")
+const {resolve} = require("path")
 
 const {log} = require("./common/log")
 const compiler = require("./tasks/webpack/compiler")()
@@ -15,12 +16,9 @@ const Rates = require("./server/entities/rates.js")
 const app = express()
 const router = express.Router()
 
-router.get("/", (req, res) => {
-  res.sendFile(config.path.indexHtml)
-})
-
-const rates = new Rates("https://openexchangerates.org/api/latest.json?app_id=0421e1c208094556b8a11f2badebc230")
-const currencies = new Currencies("https://openexchangerates.org/api/currencies.json?app_id=0421e1c208094556b8a11f2badebc230")
+// TODO: app ECB API support
+const rates = new Rates(`https://openexchangerates.org/api/latest.json?app_id=${config.api.appID}`)
+const currencies = new Currencies(`https://openexchangerates.org/api/currencies.json?app_id=${config.api.appID}`)
 
 router.get("/api/v1/rates\.:ext?", (req, res) => {
   rates
@@ -36,8 +34,9 @@ router.get("/api/v1/currencies\.:ext?", (req, res) => {
 
 app.use(router)
 app.use(require("webpack-dev-middleware")(compiler, {
-    noInfo: true,
-    publicPath: "/static"
+  noInfo: true,
+  filename: webpackConfig.output.filename,
+  publicPath: webpackConfig.output.publicPath,
 }));
 app.use(require("webpack-hot-middleware")(compiler, {
   log: log,

@@ -28,18 +28,25 @@ let preloadedState = {
     },
     rates: {
       base: "USD",
+      // last updated/synced-at
+      timestamp: 0,
       byCurrency: {
         "USD": 1,
         "EUR": 0.936899,
         "GBP": 0.821827,
         "RUB": 59.02142
       },
+      // available currencies
+      // ignore other
       allCurrencies: [
         "USD", "EUR", "GBP", "RUB"
       ]
     }
   },
   ui: {
+    // actual exchange direction
+    direction: direction.Input,
+
     [direction.Input]: {
       currency: "USD",
       v: 0

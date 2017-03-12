@@ -21,6 +21,8 @@ const config = {
   api: {
     kind: apiKind.OpenExchange,
     appID: "0421e1c208094556b8a11f2badebc230",
+    randomize: true, // randomize/mock API data
+    pollPeriod: 3 // seconds
   },
 
   hmr: {
@@ -38,7 +40,6 @@ function toLog(v) {
 
   log("")
   log("application config:")
-  log("")
   log(`${p}env: "${env.toString(v.env)}"`)
 
   log(`${p}path(various paths):`)
@@ -54,6 +55,8 @@ function toLog(v) {
   log(`${p}api(remote exchange API):`)
   log(`${p}  kind: "${apiKind.name(v.api.kind)}"`)
   log(`${p}  appID: "${v.api.appID}"`)
+  log(`${p}  randomize/mock: ${v.api.randomize}`)
+  log(`${p}  poll-period: ${v.api.pollPeriod}s`)
 
   log(`${p}server-local(nodejs/express local server settings):`)
   log(`${p}  host: 0.0.0.0`)

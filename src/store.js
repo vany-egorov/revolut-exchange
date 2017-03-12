@@ -30,21 +30,23 @@ class Store extends BaseStore {
   }
 
   onUIInputChange(direction, v) {
-    let srcDrc = direction  // source direction
-    let dstDrc = libDirection.other(direction)  // destination direction
+    let sourceDirection = direction
+    let destinationDirection = libDirection.other(direction)
 
-    v = format.currency(this.state.getUI(srcDrc).v, v)
+    v = format.currency(this.state.getUI(sourceDirection).v, v)
 
     let rate = this.state.rate(
-      this.state.getUI(srcDrc).currency,
-      this.state.getUI(dstDrc).currency,
+      this.state.getUI(sourceDirection).currency,
+      this.state.getUI(destinationDirection).currency,
     )
-    this.state.getUI(srcDrc).v = v
-    this.state.getUI(dstDrc).v = format.round(v * rate)
+    this.state.getUI(sourceDirection).v = v
+    this.state.getUI(destinationDirection).v = format.round(v * rate)
+
+    this.state.ui.direction = direction
 
     this
-      .emit(actions.stateChangeUIV(srcDrc))
-      .emit(actions.stateChangeUIV(dstDrc))
+      .emit(actions.stateChangeUIV(sourceDirection))
+      .emit(actions.stateChangeUIV(destinationDirection))
   }
 
   onUIExchange() {
@@ -58,6 +60,15 @@ class Store extends BaseStore {
       .emit(actions.stateExchange())
       .emit(actions.stateChangeUIV(libDirection.Input))
       .emit(actions.stateChangeUIV(libDirection.Output))
+  }
+
+  onIOMsgRates(raw) {
+    let wasUpdated = this.state.updateRates(JSON.parse(raw))
+    if (!wasUpdated) { return }
+
+    this.state.recalculateUIV()
+
+    this.emit(actions.stateUpdateRates())
   }
 }
 
@@ -94,6 +105,9 @@ store.register((a) => {
     break
   case actions.UI_EXCHANGE:
     store.onUIExchange()
+    break
+  case actions.IO_MSG_RATES:
+    store.onIOMsgRates(a.data)
     break
   }
 })

@@ -1,3 +1,5 @@
+import _ from "lodash"
+
 import libDirection from "./lib/exchange-direction"
 import * as format from "./helpers/format"
 
@@ -49,6 +51,35 @@ class State {
     let rBase = s[this.entities.rates.base]  // 1
 
     return (rBase/rSrc)*rDst
+  }
+
+  updateRates(ratesNew) {
+    let rates = this.entities.rates
+
+    if (rates.timestamp === ratesNew.timestamp) { // is up to date
+      return false // was no updated
+    }
+
+    rates.base = ratesNew.base
+    rates.timestamp = ratesNew.timestamp
+    _(rates.allCurrencies)
+      .forEach((currency) => {
+        rates.byCurrency[currency] = ratesNew.rates[currency]
+      })
+
+    return true
+  }
+
+  recalculateUIV() {
+    let sourceDirection = this.ui.direction
+    let destinationDirection = libDirection.other(sourceDirection)
+
+    let rate = this.rate(
+      this.getUI(sourceDirection).currency,
+      this.getUI(destinationDirection).currency,
+    )
+    let v = this.getUI(sourceDirection).v
+    this.getUI(destinationDirection).v = format.round(v * rate)
   }
 
   nxtCurrency(direction) {

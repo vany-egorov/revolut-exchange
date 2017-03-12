@@ -25,9 +25,12 @@ class ExchangeRate extends React.Component {
   componentDidMount() {
     let u1 = this.props.store.on(
       actions.STATE_CHANGE_UI_CURRENCY, this.onStateChange)
+    let u2 = this.props.store.on(
+      actions.STATE_UPDATE_RATES, this.onStateChange)
 
     this.unsubs
       .push(u1)
+      .push(u2)
       .commit()
   }
 

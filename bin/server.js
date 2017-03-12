@@ -21,9 +21,13 @@ const rates = new Rates(`https://openexchangerates.org/api/latest.json?app_id=${
 const currencies = new Currencies(`https://openexchangerates.org/api/currencies.json?app_id=${config.api.appID}`)
 
 router.get("/api/v1/rates\.:ext?", (req, res) => {
-  rates
-    .fetch()
-    .then(() => { res.send(rates.apify()) })
+  if (config.api.randomize) {
+    res.send(rates.apifyRandom())
+  } else {
+    rates
+      .fetch()
+      .then(() => { res.send(rates.apify()) })
+  }
 })
 
 router.get("/api/v1/currencies\.:ext?", (req, res) => {
@@ -50,23 +54,27 @@ const io = socketIO(server);
 
 
 io.on("connection", function(socket) {
-  const ticker = Bacon.fromPoll(3000, () => {
-    return new Bacon.Next();
-  })
+  const ticker = Bacon.fromPoll(
+    config.api.pollPeriod * 1000, () => {
+      return new Bacon.Next();
+    }
+  )
 
   const once = new Bacon.once() // force update at startup
 
   const stream = ticker.merge(new Bacon.once(1))
 
   const unsub = stream.onValue(() => {
-    return
-
-    rates
-      .fetch()
-      .then(() => {
-        socket.emit("rates", rates.apify())
-      })
-      .catch((e) => { log(e) })
+    if (config.api.randomize) {
+      socket.emit("rates", rates.apifyRandom())
+    } else {
+      rates
+        .fetch()
+        .then(() => {
+          socket.emit("rates", rates.apify())
+        })
+        .catch((e) => { log(e) })
+    }
   })
 
   socket.on("disconnect", () => { unsub() })

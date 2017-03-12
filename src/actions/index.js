@@ -7,6 +7,7 @@ let UI_EXCHANGE = Symbol("UI:EXCHANGE")
 let STATE_CHANGE_UI_V = Symbol("STATE:CHANGE:UI:V")
 let STATE_CHANGE_UI_CURRENCY = Symbol("STATE:CHANGE:CURRENCY")
 let STATE_EXCHANGE = Symbol("STATE:EXCHANGE")
+let STATE_UPDATE_RATES = Symbol("STATE:UPDATE:RATES")
 let IO_CONNECT = Symbol("IO:CONNECT")
 let IO_MSG_RATES = Symbol("IO:MSG:RATES")
 let IO_DISCONNECT = Symbol("IO:DISCONNECT")
@@ -43,6 +44,7 @@ function stateChangeUICurrency(direction) {
 }
 
 function stateExchange() { return {type: STATE_EXCHANGE} }
+function stateUpdateRates() { return {type: STATE_UPDATE_RATES} }
 
 function ioConnect() { return {type: IO_CONNECT} }
 function ioMsgRates(data) {
@@ -61,6 +63,7 @@ export {
   STATE_CHANGE_UI_V,
   STATE_CHANGE_UI_CURRENCY,
   STATE_EXCHANGE,
+  STATE_UPDATE_RATES,
   IO_CONNECT,
   IO_MSG_RATES,
   IO_DISCONNECT,
@@ -74,6 +77,7 @@ export {
   stateChangeUIV,
   stateChangeUICurrency,
   stateExchange,
+  stateUpdateRates,
   ioConnect,
   ioMsgRates,
   ioDisconnect

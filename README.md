@@ -29,7 +29,7 @@ $ ls -lah ./dist
 Config
 ------
 
-[Main development configuration file](server/config)
+[Main development configuration file](server/config.js)
 
 Randomize endpoint:
 ```javascript

@@ -45,6 +45,15 @@ Poll period:
 }}
 ```
 
+Hot Keys
+--------
+
+| Key | Description |
+| --- | --- |
+| z | Previous currency |
+| x | Next currency |
+| s | Swap currencies |
+
 Task
 ----
 

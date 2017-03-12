@@ -41,7 +41,7 @@ class ExchangeRate extends React.Component {
     let destination = this.store.state.getUI(direction.Output).currency
 
     return {
-      v: format.round(this.store.state.rate(source, destination)),
+      v: format.round4(this.store.state.rate(source, destination)),
       source: currency.parse(source),
       destination: currency.parse(destination),
       isSameCurrency: this.store.state.isSameCurrency()

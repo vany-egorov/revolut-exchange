@@ -44,6 +44,9 @@ let preloadedState = {
     }
   },
   ui: {
+    // currently focused input
+    focus: direction.Input,
+
     // actual exchange direction
     direction: direction.Input,
 

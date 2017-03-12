@@ -50,6 +50,15 @@ class Store extends BaseStore {
       .emit(actions.stateChangeUIV(destinationDirection))
   }
 
+  onUIInputBlur() {
+    this.emit(actions.otherInputFocus(this.state.ui.focus))
+  }
+
+  onUIInputFocusChange(direction) {
+    this.state.ui.focus = libDirection.other(direction)
+    this.emit(actions.otherInputFocus(this.state.ui.focus))
+  }
+
   onUIExchange() {
     if (this.state.gotOverdraft()) { return }
     if (this.state.isSameCurrency()) { return }
@@ -103,6 +112,12 @@ store.register((a) => {
     break
   case actions.UI_INPUT_CHANGE:
     store.onUIInputChange(a.direction, a.v)
+    break
+  case actions.UI_INPUT_BLUR:
+    store.onUIInputBlur()
+    break
+  case actions.UI_INPUT_FOCUS_CHANGE:
+    store.onUIInputFocusChange(a.direction)
     break
   case actions.UI_EXCHANGE:
     store.onUIExchange()

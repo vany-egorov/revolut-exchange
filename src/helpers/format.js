@@ -40,4 +40,5 @@ export function currency(o, n, maxLen=9) {
   return n
 }
 
-export function round(v) { return Math.round(100 * v) / 100 }
+export function round(v) { return Math.round(1e2 * v) / 1e2 }
+export function round4(v) { return Math.round(1e4 * v) / 1e4 }

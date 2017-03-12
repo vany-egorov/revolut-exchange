@@ -53,7 +53,7 @@ Hot Keys
 | z | Previous currency |
 | x | Next currency |
 | s | Swap currencies |
-| TAB | Switch accounts/inputs |
+| TAB | Cycle between accounts/inputs |
 
 Task
 ----

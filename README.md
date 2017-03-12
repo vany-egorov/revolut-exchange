@@ -22,7 +22,7 @@ production build:
 ```
 $ cd revolut-exchange
 $ yarn
-$ yarn brod
+$ yarn prod
 $ ls -lah ./dist
 ```
 

@@ -25,13 +25,14 @@ export function currency(o, n, maxLen=9) {
   o = o.toString()
   n = n.toString()
 
-  if (n === "") { return "0" }
-
   // drop spaces
   n = n.replace(/\s+/g, "")
 
   // drop leading '0' char
-  n = n.replace(/^0+/, "")
+  // except starts-with 0.
+  n = n.replace(/^(?!0\.)0+/, "")
+
+  if (n === "") { return "0" }
 
   if (!currencyRe.test(n)) { return o }
   if (n.length > maxLen) { return o }

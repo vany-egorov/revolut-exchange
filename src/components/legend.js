@@ -20,7 +20,7 @@ function Legend() {
       </tr>
       <tr>
         <th>TAB</th>
-        <td>Switch accounts/inputs</td>
+        <td>Cycle between accounts/inputs</td>
       </tr>
     </tbody></table>
   )

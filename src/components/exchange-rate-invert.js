@@ -1,5 +1,6 @@
 import _ from "lodash"
 import React from "react"
+import classNames from "classnames"
 
 import direction from "../lib/exchange-direction"
 import * as actions from "../actions"
@@ -30,7 +31,7 @@ class ExchangeRateInvert extends React.Component {
       .commit()
   }
 
-  componentWillUnmount() { this.unsubs.forEach((u) => u) }
+  componentWillUnmount() { this.unsubs.forEach((u) => { u() }) }
 
   mapStateToProps() {
     let source = this.store.state.getUI(direction.Input).currency
@@ -39,18 +40,24 @@ class ExchangeRateInvert extends React.Component {
     return {
       v: format.round(this.store.state.rate(destination, source)),
       source: currency.parse(destination),
-      destination: currency.parse(source)
+      destination: currency.parse(source),
+      isSameCurrency: this.store.state.isSameCurrency()
     }
   }
 
   onStateChange() { this.setState(this.mapStateToProps()) }
 
   render() {
-    let symbol1 = currency.symbol(this.state.destination)
-    let symbol2 = currency.symbol(this.state.source)
+    let symbol1 = currency.symbol(this.state.source)
+    let symbol2 = currency.symbol(this.state.destination)
+
+    let classes = {
+      [styles["rate-invert"]]: true,
+      [styles["rate-invert--hidden"]]: this.state.isSameCurrency
+    }
 
     return (
-      <div className={styles["rate-invert"]}>
+      <div className={classNames(classes)}>
         {symbol1}1 = {symbol2}{this.state.v}
       </div>
     )

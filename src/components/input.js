@@ -1,7 +1,9 @@
 import _ from "lodash"
 import React from "react"
+import classNames from "classnames"
 
 import * as actions from "../actions"
+import * as humanize from "../helpers/humanize"
 
 import styles from "../styles/input.css"
 
@@ -24,24 +26,26 @@ class Input extends React.Component {
   componentDidMount() {
     let u1 = this.props.store.on(
       actions.STATE_CHANGE_UI_V, this.onStateChange)
+    let u2 = this.props.store.on(
+      actions.STATE_CHANGE_UI_CURRENCY, this.onStateChange)
 
     this.unsubs
       .push(u1)
+      .push(u2)
       .commit()
   }
 
-  componentWillUnmount() { this.unsubs.forEach((u) => u) }
+  componentWillUnmount() { this.unsubs.forEach((u) => { u() }) }
 
   mapStateToProps() {
     return {
-      v: this.store.state.getUI(this.props.direction).v
+      v: this.store.state.getUI(this.props.direction).v,
+      gotOverdraft: this.store.state.gotOverdraft(),
+      isSameCurrency: this.store.state.isSameCurrency()
     }
   }
 
-  onStateChange(a) {
-    if (a.direction != this.props.direction) { return }
-    this.setState(this.mapStateToProps())
-  }
+  onStateChange() { this.setState(this.mapStateToProps()) }
 
   onChange(e) {
     this.store.dispatch(
@@ -65,11 +69,17 @@ class Input extends React.Component {
   }
 
   render() {
+    let classes = {
+      [styles.input]: true,
+      [styles["got-overdraft"]]: this.state.gotOverdraft
+    }
+
     return (
       <input type="text"
-        className={styles.input}
-        value={this.state.v}
-        maxLength={7}
+        className={classNames(classes)}
+        value={humanize.currency(this.state.v)}
+        maxLength={9}
+        disabled={this.state.isSameCurrency}
 
         onChange={this.onChange}
         onFocus={this.onFocus}

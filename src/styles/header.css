@@ -20,6 +20,10 @@
   text-align: center;
   padding: 6px 0px;
   top: 10px;
+
+  &--hidden {
+    visibility: hidden;
+  }
 }
 
 .button {
@@ -33,6 +37,14 @@
   font-size: 14px;
   top: 18px;
   right: 24px;
+
+  &:disabled {
+    color: #2A74F1;
+    cursor: default;
+    &:hover {
+      color: #2A74F1;
+    }
+  }
 
   &:hover {
     color: #B1B1B1;

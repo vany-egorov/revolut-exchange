@@ -21,11 +21,14 @@ let currencyRe = /^(:?0|(:?[1-9][0-9]*))(:?\.[0-9]{0,2})?$/
 
 // o => old
 // n => new
-export function currency(o, n, maxLen=7) {
+export function currency(o, n, maxLen=9) {
   o = o.toString()
   n = n.toString()
 
   if (n === "") { return "0" }
+
+  // drop spaces
+  n = n.replace(/\s+/g, "")
 
   // drop leading '0' char
   n = n.replace(/^0+/, "")

@@ -32,7 +32,7 @@ class Account extends React.Component {
       .commit()
   }
 
-  componentWillUnmount() { this.unsubs.forEach((u) => u) }
+  componentWillUnmount() { this.unsubs.forEach((u) => { u() }) }
 
   mapStateToProps() {
     let account = this.store.state.account(this.props.direction)

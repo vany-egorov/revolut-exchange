@@ -27,7 +27,7 @@ class Currency extends React.Component {
       .commit()
   }
 
-  componentWillUnmount() { this.unsubs.forEach((u) => u) }
+  componentWillUnmount() { this.unsubs.forEach((u) => { u() }) }
 
   mapStateToProps() {
     return {

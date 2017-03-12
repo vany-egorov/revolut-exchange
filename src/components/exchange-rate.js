@@ -1,5 +1,6 @@
 import _ from "lodash"
 import React from "react"
+import classNames from "classnames"
 
 import direction from "../lib/exchange-direction"
 import * as actions from "../actions"
@@ -30,27 +31,33 @@ class ExchangeRate extends React.Component {
       .commit()
   }
 
-  componentWillUnmount() { this.unsubs.forEach((u) => u) }
+  componentWillUnmount() { this.unsubs.forEach((u) => { u() }) }
 
   mapStateToProps() {
-    let src = this.store.state.getUI(direction.Input).currency
-    let dst = this.store.state.getUI(direction.Output).currency
+    let source = this.store.state.getUI(direction.Input).currency
+    let destination = this.store.state.getUI(direction.Output).currency
 
     return {
-      v: format.round(this.store.state.rate(src, dst)),
-      src: currency.parse(src),
-      dst: currency.parse(dst)
+      v: format.round(this.store.state.rate(source, destination)),
+      source: currency.parse(source),
+      destination: currency.parse(destination),
+      isSameCurrency: this.store.state.isSameCurrency()
     }
   }
 
   onStateChange() { this.setState(this.mapStateToProps()) }
 
   render() {
-    let symbol1 = currency.symbol(this.state.src)
-    let symbol2 = currency.symbol(this.state.dst)
+    let symbol1 = currency.symbol(this.state.source)
+    let symbol2 = currency.symbol(this.state.destination)
+
+    let classes = {
+      [styles["rate"]]: true,
+      [styles["rate--hidden"]]: this.state.isSameCurrency
+    }
 
     return (
-      <div className={styles.rate}>
+      <div className={classNames(classes)}>
         {symbol1}1 = {symbol2}{this.state.v}
       </div>
     )

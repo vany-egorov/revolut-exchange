@@ -22,6 +22,24 @@ class State {
     accountOutput.v = format.round(accountOutput.v)
   }
 
+  gotOverdraft() {
+    let value = format.round(this.ui[libDirection.Input].v)
+    let account = this.account(libDirection.Input)
+    return ((account.v - value) < 0) ? true : false
+  }
+
+  areUIVZero() {
+    return (
+      (format.round(this.ui[libDirection.Input].v) === 0) &&
+      (format.round(this.ui[libDirection.Output].v) === 0)
+    )
+  }
+
+  isSameCurrency() {
+    return ((this.ui[libDirection.Input].currency)
+            === (this.ui[libDirection.Output].currency))
+  }
+
   // src => source currency
   // dst => destination currency
   rate(src, dst) {

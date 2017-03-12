@@ -48,6 +48,9 @@ class Store extends BaseStore {
   }
 
   onUIExchange() {
+    if (this.state.gotOverdraft()) { return }
+    if (this.state.isSameCurrency()) { return }
+
     this.state.exchange()
     this.state.uiResetV()
 

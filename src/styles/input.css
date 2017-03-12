@@ -13,4 +13,12 @@
   overflow: hidden;
   padding: 0px;
   right: $sz-padding;
+
+  &:disabled {
+    color: #2A74F1;
+  };
+}
+
+.got-overdraft {
+  color: red;
 }

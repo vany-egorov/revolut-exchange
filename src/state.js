@@ -83,13 +83,13 @@ class State {
   }
 
   nxtCurrency(direction) {
-    let [index, len] = this._nxtPrvCurrency(direction)
-    return this.entities.accounts.allCurrencies[(index+1) % len]
+    let [currencies, index] = this._nxtPrvCurrency(direction)
+    return currencies[(index+1) % currencies.length]
   }
 
   prvCurrency(direction) {
-    let [index, len] = this._nxtPrvCurrency(direction)
-    return this.entities.accounts.allCurrencies[(index-1) < 0 ? len-1 : index-1]
+    let [currencies, index] = this._nxtPrvCurrency(direction)
+    return currencies[(index-1) < 0 ? currencies.length-1 : index-1]
   }
 
   account(direction) {
@@ -108,11 +108,13 @@ class State {
 
   // private
   _nxtPrvCurrency(direction) {
-    let c = this.getUI(direction).currency
-    let index = this.entities.accounts.allCurrencies.indexOf(c)
-    let len = this.entities.accounts.allCurrencies.length
+    let without = this.getUI(libDirection.other(direction)).currency
+    let currencies = this.entities.accounts.allCurrencies
+      .filter(x => x !== without)
+    let index = currencies.indexOf(this.getUI(direction).currency)
+    console.log(currencies)
 
-    return [index, len]
+    return [currencies, index]
   }
 }
 

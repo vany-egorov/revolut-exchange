@@ -32,8 +32,8 @@ let preloadedState = {
       timestamp: 0,
       byCurrency: {
         "USD": 1,
-        "EUR": 0.936899,
-        "GBP": 0.821827,
+        "EUR": 0.926899,
+        "GBP": 0.811827,
         "RUB": 59.02142
       },
       // available currencies

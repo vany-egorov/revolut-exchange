@@ -31,7 +31,7 @@ class Rates extends Base {
         "USD": 1,
         "EUR": randomBetween(0.9, 1.1),
         "GBP": randomBetween(0.7, 0.9),
-        "RUB": randomBetween(30, 200) // :(
+        "RUB": randomBetween(55, 70)
       }
     })
   }

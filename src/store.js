@@ -72,6 +72,22 @@ class Store extends BaseStore {
       .emit(actions.stateChangeUIV(libDirection.Output))
   }
 
+  onUISwapCurrency() {
+    this.state.uiResetV()
+
+    let currency1 = this.state.getUI(libDirection.Input).currency
+    let currency2 = this.state.getUI(libDirection.Output).currency
+
+    this.state.getUI(libDirection.Input).currency = currency2
+    this.state.getUI(libDirection.Output).currency = currency1
+
+    this
+      .emit(actions.stateChangeUIV(libDirection.Input))
+      .emit(actions.stateChangeUIV(libDirection.Output))
+      .emit(actions.stateChangeUICurrency(libDirection.Input))
+      .emit(actions.stateChangeUICurrency(libDirection.Output))
+  }
+
   onIOMsgRates(raw) {
     let wasUpdated = this.state.updateRates(JSON.parse(raw))
     if (!wasUpdated) { return }
@@ -121,6 +137,9 @@ store.register((a) => {
     break
   case actions.UI_EXCHANGE:
     store.onUIExchange()
+    break
+  case actions.UI_SWAP_CURRENCY:
+    store.onUISwapCurrency()
     break
   case actions.IO_MSG_RATES:
     store.onIOMsgRates(a.data)

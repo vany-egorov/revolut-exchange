@@ -6,6 +6,7 @@ let UI_INPUT_FOCUS_CHANGE = Symbol("UI:INPUT:FOCUS:CHANGE")
 let UI_INPUT_BLUR = Symbol("UI:INPUT:BLUR")
 let UI_INPUT_CLICK = Symbol("UI:INPUT:CLICK")
 let UI_EXCHANGE = Symbol("UI:EXCHANGE")
+let UI_SWAP_CURRENCY = Symbol("UI:SWAP:CURRENCY")
 let STATE_CHANGE_UI_V = Symbol("STATE:CHANGE:UI:V")
 let STATE_CHANGE_UI_CURRENCY = Symbol("STATE:CHANGE:CURRENCY")
 let STATE_EXCHANGE = Symbol("STATE:EXCHANGE")
@@ -46,6 +47,10 @@ function uiInputClick(direction, v) {
 
 function uiExchange() { return {type: UI_EXCHANGE} }
 
+function uiSwapCurrency() {
+  return {type: UI_SWAP_CURRENCY}
+}
+
 function stateChangeUIV(direction) {
   return {type: STATE_CHANGE_UI_V, direction: direction}
 }
@@ -77,6 +82,7 @@ export {
   UI_INPUT_BLUR,
   UI_INPUT_CLICK,
   UI_EXCHANGE,
+  UI_SWAP_CURRENCY,
   STATE_CHANGE_UI_V,
   STATE_CHANGE_UI_CURRENCY,
   STATE_EXCHANGE,
@@ -94,6 +100,7 @@ export {
   uiInputBlur,
   uiInputClick,
   uiExchange,
+  uiSwapCurrency,
   stateChangeUIV,
   stateChangeUICurrency,
   stateExchange,

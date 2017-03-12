@@ -73,6 +73,9 @@ class Input extends React.Component {
     } else if (e.keyCode === keycode.x) {
       this.store.dispatch(actions.uiNext(this.props.direction))
       e.preventDefault()
+    } else if (e.keyCode === keycode.s) {
+      this.store.dispatch(actions.uiSwapCurrency())
+      e.preventDefault()
     }
   }
 

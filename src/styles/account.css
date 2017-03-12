@@ -1,3 +1,7 @@
 .account {
   font-size: 12px;
 }
+
+.got-overdraft {
+  color: red;
+}

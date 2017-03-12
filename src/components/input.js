@@ -43,7 +43,6 @@ class Input extends React.Component {
   mapStateToProps() {
     return {
       v: this.store.state.getUI(this.props.direction).v,
-      gotOverdraft: this.store.state.gotOverdraft(),
       isSameCurrency: this.store.state.isSameCurrency()
     }
   }
@@ -73,8 +72,7 @@ class Input extends React.Component {
 
   render() {
     let classes = {
-      [styles.input]: true,
-      [styles["got-overdraft"]]: this.state.gotOverdraft
+      [styles.input]: true
     }
 
     return (

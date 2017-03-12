@@ -36,7 +36,7 @@ class Currency extends React.Component {
   }
 
   onStateChange(a) {
-    if (a.direction != this.props.direction) { return }
+    if (a.direction !== this.props.direction) { return }
     this.setState(this.mapStateToProps())
   }
 

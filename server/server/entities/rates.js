@@ -1,6 +1,6 @@
 const request = require("request")
 
-const Base = require("./Base")
+const Base = require("./base")
 
 
 function randomBetween(min, max) {

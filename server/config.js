@@ -21,8 +21,8 @@ const config = {
   api: {
     kind: apiKind.OpenExchange,
     appID: "0421e1c208094556b8a11f2badebc230",
-    randomize: false, // randomize/mock API data
-    pollPeriod: 30 // seconds
+    randomize: true, // randomize/mock API data
+    pollPeriod: 3 // seconds
   },
 
   hmr: {
